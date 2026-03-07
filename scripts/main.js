@@ -1,6 +1,7 @@
 console.log('main connected');
 const cardContainer = document.getElementById("card-container");
 const badgeContainer = document.getElementById("badge-container");
+const issueCount = document.getElementById("issue-count");
 
 // 3
 // const loadArray = (arr,container) =>{
@@ -42,7 +43,8 @@ async function loadIssue(){
 
 // 2
 function displayIssue(issues){
-    // cardContainer.innerHTML = "";
+    cardContainer.innerHTML = "";
+    let count = 0;
 
     issues.forEach((issue) => {
         const div = document.createElement('div');
@@ -66,10 +68,13 @@ function displayIssue(issues){
   </div>
         
         `;
+        count++;
         
         cardContainer.appendChild(div);
     });
 
+    
+  issueCount.innerText = count;
 
 }
 
