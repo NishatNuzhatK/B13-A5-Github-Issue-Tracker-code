@@ -14,6 +14,7 @@ document.getElementById('signin-btn').addEventListener('click', function(){
 
     else{
         alert('sign in failed');
+        return;
     }
 
 });
