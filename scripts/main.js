@@ -29,7 +29,7 @@ function displayIssue(issues){
         const div = document.createElement('div');
         div.className = `card bg-base-100 shadow-sm rounded-xl border-t-4 ${issue.status == "open" ? "border-t-green-500" :"border-t-purple-500" }`;
         div.innerHTML = `
-        <div class="card-body space-y-3">
+        <div class="card-body space-y-3 ">
     <div class="flex flex-row justify-between">
     ${issue.status === "open"? '<img src="./assets/Open-Status.png" alt="">' : '<img src="./assets/Closed- Status .png" alt="">'}
       
@@ -38,7 +38,7 @@ function displayIssue(issues){
     <h2 class="card-title text-2xl">${issue.title}</h2>
     <p class="line-clamp-2 text-[#64748B]">${issue.description}</p>
     
-    <div class="flex flex-row gap-4" id = "badge-container"> ${loadArray(issue.labels)}</div>
+    <div class="flex flex-col md:flex-row gap-4" id = "badge-container"> ${loadArray(issue.labels)}</div>
     <hr>
     <p class="text-[#64748B]">#1 by ${issue.author}</p>
     <p class="text-[#64748B]">${issue.createdAt.split("T")[0]}</p>
