@@ -80,6 +80,7 @@ function displayIssue(issues){
 async function BtnDisplay(btn){
 
   const currentBtn = document.getElementById(btn);
+  showingSpinner();
 
   allBtn.classList.remove('btn-primary');
   openBtn.classList.remove('btn-primary');
@@ -95,6 +96,7 @@ async function BtnDisplay(btn){
 
  const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
  const data = await res.json();
+ hidingSpinner();
 
   cardContainer.innerHTML = "";
 
