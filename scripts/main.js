@@ -4,32 +4,11 @@ const badgeContainer = document.getElementById("badge-container");
 const issueCount = document.getElementById("issue-count");
 
 // 3
-// const loadArray = (arr,container) =>{
-//   // const newArray = arr.map((el) => );
-//   // newArray[0].className = "badge badge-soft badge-secondary";
-//   // newArray[1].className = "badge badge-soft badge-warning";
-
-//   let count = 0;
-//   arr.forEach((el)=>{
-//     count++;
-//     const div = document.createElement('div');
-//   div.textContent = el;
-//   if(count === 1){
-//     div.className = "badge badge-soft badge-secondary"
-//   }
-
-//   if(count === 2){
-//     div.className = "badge badge-soft badge-warning";
-//   }
-
-//   // container.appendChild(div)
-  
-
-//   });
-  
-  
-    
-// };
+ const loadArray = (arr,container) =>{
+ const newArray = arr.map((el) => `<div class="badge badge-soft badge-secondary">${el}</div>`);
+ return (newArray.join(" "));
+   
+ };
 
 // 1
 async function loadIssue(){
@@ -52,16 +31,14 @@ function displayIssue(issues){
         div.innerHTML = `
         <div class="card-body space-y-3">
     <div class="flex flex-row justify-between">
-      <img src="./assets/Open-Status.png" alt="">
+    ${issue.status === "open"? '<img src="./assets/Open-Status.png" alt="">' : '<img src="./assets/Closed- Status .png" alt="">'}
+      
       <p class="text-right text-xl">${issue.priority}</p>
     </div>
     <h2 class="card-title text-2xl">${issue.title}</h2>
     <p class="line-clamp-2 text-[#64748B]">${issue.description}</p>
     
-    <div class="flex flex-row gap-4" id = "badge-container">
-      <div class="badge badge-soft badge-secondary">Secondary</div>
-      <div class="badge badge-soft badge-warning">Warning</div>
-    </div>
+    <div class="flex flex-row gap-4" id = "badge-container"> ${loadArray(issue.labels)}</div>
     <hr>
     <p class="text-[#64748B]">#1 by ${issue.author}</p>
     <p class="text-[#64748B]">${issue.createdAt.split("T")[0]}</p>
