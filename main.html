@@ -72,9 +72,9 @@
       <!-- button section -->
       <section class="w-[90%] mx-auto border border-white rounded-xl bg-base-100">
       <div class="p-4 flex flex-col items-center md:flex-row gap-4">
-        <button class="btn btn-primary w-28">All</button>
-        <button class="btn btn-outline w-28 text-[#64748B]">Open</button>
-        <button class="btn btn-outline w-28 text-[#64748B]">Closed</button>
+        <button onclick="BtnDisplay('all-btn')" class="btn btn-primary w-28" id="all-btn">All</button>
+        <button onclick="BtnDisplay('open-btn')" class="btn btn-outline w-28" id="open-btn">Open</button>
+        <button onclick="BtnDisplay('close-btn')" class="btn btn-outline w-28" id="close-btn">Closed</button>
       </div>
 
       </section>
@@ -133,15 +133,11 @@
   </div>
 </div> -->
 
-<!-- others -->
-
-
- 
-<!-- others end -->
 
         </div>
 
 
+        <!-- loading spinner -->
         <div class="flex flex-row items-center justify-center hidden" id="spinner-loading">
            <span class="loading loading-bars loading-xl"></span>
 

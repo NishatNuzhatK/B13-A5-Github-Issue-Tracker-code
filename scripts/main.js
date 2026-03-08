@@ -3,6 +3,9 @@ const cardContainer = document.getElementById("card-container");
 const badgeContainer = document.getElementById("badge-container");
 const issueCount = document.getElementById("issue-count");
 const spinnerloading = document.getElementById("spinner-loading");
+const allBtn = document.getElementById("all-btn");
+const openBtn = document.getElementById("open-btn");
+const closeBtn = document.getElementById("close-btn");
 
 // 3
  const loadArray = (arr,container) =>{
@@ -71,6 +74,98 @@ function displayIssue(issues){
   issueCount.innerText = count;
 
 }
+
+
+// 5
+async function BtnDisplay(btn){
+
+  const currentBtn = document.getElementById(btn);
+
+  allBtn.classList.remove('btn-primary');
+  openBtn.classList.remove('btn-primary');
+  closeBtn.classList.remove('btn-primary');
+
+  allBtn.classList.add("btn-outline");
+  openBtn.classList.add("btn-outline");
+  closeBtn.classList.add("btn-outline");
+
+  currentBtn.classList.remove('btn-outline');
+  currentBtn.classList.add('btn-primary');
+
+
+ const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
+ const data = await res.json();
+
+  cardContainer.innerHTML = "";
+
+ 
+  let count = 0;
+ 
+  data.data.forEach((element) => {
+    if(btn === "open-btn" && element.status === 'open'){
+      btnContentDisplay(element.id);
+      count++;
+
+    }
+
+    if(btn === "close-btn" && element.status === 'closed'){
+      btnContentDisplay(element.id);
+      count++;
+
+    }
+
+    if(btn === 'all-btn'){
+      loadIssue();
+    }
+    
+  });
+
+  issueCount.innerText = count;
+  
+  
+ }
+
+
+ //6
+
+ async function btnContentDisplay(id){
+
+ 
+  const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`);
+  const data = await res.json();
+
+  
+
+       const div = document.createElement('div');
+        div.className = `card bg-base-100 shadow-sm rounded-xl border-t-4 ${data.data.status == "open" ? "border-t-green-500" :"border-t-purple-500" }`;
+        div.innerHTML = `
+        <div class="card-body space-y-3 ">
+    <div class="flex flex-row justify-between">
+    ${data.data.status === "open"? '<img src="./assets/Open-Status.png" alt="">' : '<img src="./assets/Closed- Status .png" alt="">'}
+      
+      <p class="text-right text-xl">${data.data.priority}</p>
+    </div>
+    <h2 class="card-title text-2xl">${data.data.title}</h2>
+    <p class="line-clamp-2 text-[#64748B]">${data.data.description}</p>
+    
+    <div class="flex flex-col md:flex-row gap-4" id = "badge-container"> ${loadArray(data.data.labels)}</div>
+    <hr>
+    <p class="text-[#64748B]">#1 by ${data.data.author}</p>
+    <p class="text-[#64748B]">${data.data.createdAt.split("T")[0]}</p>
+  </div>
+        
+        `;
+        
+        
+        cardContainer.appendChild(div);
+
+
+
+ };
+
+
+
+
 
 
  loadIssue();
