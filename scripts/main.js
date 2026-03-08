@@ -55,10 +55,10 @@ function displayIssue(issues){
       
       <p class="text-right text-xl">${issue.priority}</p>
     </div>
-    <h2 class="card-title text-2xl">${issue.title}</h2>
+    <h2 class="card-title text-xl wrap-break-words whitespace-normal w-full">${issue.title}</h2>
     <p class="line-clamp-2 text-[#64748B]">${issue.description}</p>
     
-    <div class="flex flex-col md:flex-row gap-4" id = "badge-container"> ${loadArray(issue.labels)}</div>
+    <div class="flex flex-wrap flex-col lg:flex-row gap-4" id = "badge-container"> ${loadArray(issue.labels)}</div>
     <hr>
     <p class="text-[#64748B]">#1 by ${issue.author}</p>
     <p class="text-[#64748B]">${issue.createdAt.split("T")[0]}</p>
@@ -147,10 +147,10 @@ async function BtnDisplay(btn){
       
       <p class="text-right text-xl">${data.data.priority}</p>
     </div>
-    <h2 class="card-title text-2xl">${data.data.title}</h2>
+    <h2 class="card-title text-xl">${data.data.title}</h2>
     <p class="line-clamp-2 text-[#64748B]">${data.data.description}</p>
     
-    <div class="flex flex-col md:flex-row gap-4" id = "badge-container"> ${loadArray(data.data.labels)}</div>
+    <div class="flex flex-wrap flex-col lg:flex-row gap-4" id = "badge-container"> ${loadArray(data.data.labels)}</div>
     <hr>
     <p class="text-[#64748B]">#1 by ${data.data.author}</p>
     <p class="text-[#64748B]">${data.data.createdAt.split("T")[0]}</p>
