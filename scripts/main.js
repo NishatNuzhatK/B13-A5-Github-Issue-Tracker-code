@@ -2,6 +2,7 @@ console.log('main connected');
 const cardContainer = document.getElementById("card-container");
 const badgeContainer = document.getElementById("badge-container");
 const issueCount = document.getElementById("issue-count");
+const spinnerloading = document.getElementById("spinner-loading");
 
 // 3
  const loadArray = (arr,container) =>{
@@ -10,11 +11,27 @@ const issueCount = document.getElementById("issue-count");
    
  };
 
+
+//  4
+function showingSpinner(){
+  spinnerloading.classList.remove('hidden');
+  cardContainer.innerHTML = "";
+
+}
+
+function hidingSpinner(){
+  spinnerloading.classList.add('hidden');
+
+}
+
 // 1
 async function loadIssue(){
+
+  showingSpinner();
     const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
     const data = await res.json();
     console.log(data);
+    hidingSpinner();
     displayIssue(data.data);
 
 }
