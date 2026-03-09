@@ -6,6 +6,16 @@ const spinnerloading = document.getElementById("spinner-loading");
 const allBtn = document.getElementById("all-btn");
 const openBtn = document.getElementById("open-btn");
 const closeBtn = document.getElementById("close-btn");
+const infoModal = document.getElementById("infoModal");
+const modalTitle = document.getElementById("modal-title");
+const modalStatus = document.getElementById("modal-status");
+const modalAssignee = document.getElementById("modal-assignee");
+const modalDate = document.getElementById("modal-date");
+const modallabels = document.getElementById("modal-labels");
+const modalDes = document.getElementById("modal-des");
+const modalPriority = document.getElementById("modal-priority");
+const modalStatusAgain = document.getElementById("modal-status-again");
+const modalAssigneeAgain = document.getElementById("modal-assignee-again");
 
 // 3
  const loadArray = (arr,container) =>{
@@ -47,7 +57,8 @@ function displayIssue(issues){
 
     issues.forEach((issue) => {
         const div = document.createElement('div');
-        div.className = `card bg-base-100 shadow-sm rounded-xl border-t-4 ${issue.status == "open" ? "border-t-green-500" :"border-t-purple-500" }`;
+        div.className = `card bg-base-100 shadow-sm rounded-xl border-t-4 cursor-pointer ${issue.status == "open" ? "border-t-green-500" :"border-t-purple-500" }`;
+        div.onclick = () => issueModal(issue.id);
         div.innerHTML = `
         <div class="card-body space-y-3 ">
     <div class="flex flex-row justify-between">
@@ -164,6 +175,26 @@ async function BtnDisplay(btn){
 
 
  };
+
+
+  async function issueModal(id){
+
+    const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`);
+    const data = await res.json();
+
+    modalTitle.textContent = data.data.title;
+    modalStatus.textContent = data.data.status;
+    modalStatusAgain.textContent = data.data.status;
+    modalAssignee.textContent = data.data.assignee;
+    modalAssigneeAgain.textContent = data.data.assignee;
+    modallabels.innerHTML = loadArray(data.data.labels);
+    modalDate.textContent = data.data.updatedAt.split("T")[0];
+    modalDes.textContent = data.data.description;
+    modalPriority.textContent = data.data.priority;
+    
+    
+  infoModal.showModal();
+ }
 
 
 

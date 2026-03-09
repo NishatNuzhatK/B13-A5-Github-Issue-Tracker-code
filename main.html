@@ -145,9 +145,50 @@
        
       </section>
 
-      <!-- <section class="mx-auto">
+
+      <!-- modal -->
+      <section class="">
+        <!-- Open the modal using ID.showModal() method -->
+<!-- <button class="btn" onclick="infoModal.showModal()">open modal</button> -->
+<dialog id="infoModal" class="modal">
+  <div class="modal-box space-y-4">
+
+    <!-- modal content -->
+     <h3 class="font-bold"><span id="modal-title"></span></h3>
+     <p class="text-[#64748B]"><span id="modal-status" class="border-green-500 text-black bg-green-300 rounded-xl p-1"> </span> • <span id="modal-status-again"> </span> by <span id="modal-assignee"> </span> • <span class ="" id="modal-date"> </span></p>
+
+     <p><span id="modal-labels"></span></p>
+
+     <p class="text-[#64748B]"><span id="modal-des"></span></p>
+
+     <div class="bg-base-200 mt-3 rounded-xl space-y-1.5 flex flex-row justify-between p-2">
+      <div class="left">
+        <p class="text-[#64748B]">Assignee:</p>
+        <p class="font-bold"><span id="modal-assignee-again"></span></p>
+      </div>
+
+      <div class="right">
+        <p class="text-[#64748B]">Priority:</p>
+        <p class="font-bold"><span id="modal-priority"></span></p>
+
+      </div>
+
+     </div>
+
+
+
+
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn btn-primary">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+
         
-      </section> -->
+      </section>
 
     </main>
 
