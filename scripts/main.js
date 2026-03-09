@@ -19,7 +19,7 @@ const modalAssigneeAgain = document.getElementById("modal-assignee-again");
 
 // 3
  const loadArray = (arr,container) =>{
- const newArray = arr.map((el) => `<div class="badge badge-soft badge-secondary">${el}</div>`);
+ const newArray = arr.map((el) => `<div class="inline-block border-amber-500 text-black bg-amber-300 rounded-xl p-2 max-w-full">${el}</div>`);
  return (newArray.join(" "));
    
  };
@@ -69,7 +69,7 @@ function displayIssue(issues){
     <h2 class="card-title text-xl wrap-break-words whitespace-normal w-full">${issue.title}</h2>
     <p class="line-clamp-2 text-[#64748B]">${issue.description}</p>
     
-    <div class="flex flex-wrap flex-col lg:flex-row gap-4" id = "badge-container"> ${loadArray(issue.labels)}</div>
+    <div class="flex flex-wrap lg:flex-row gap-4" id = "badge-container"> ${loadArray(issue.labels)}</div>
     <hr>
     <p class="text-[#64748B]">#1 by ${issue.author}</p>
     <p class="text-[#64748B]">${issue.createdAt.split("T")[0]}</p>
@@ -150,7 +150,8 @@ async function BtnDisplay(btn){
   
 
        const div = document.createElement('div');
-        div.className = `card bg-base-100 shadow-sm rounded-xl border-t-4 ${data.data.status == "open" ? "border-t-green-500" :"border-t-purple-500" }`;
+        div.className = `card bg-base-100 shadow-sm rounded-xl cursor-pointer border-t-4 ${data.data.status == "open" ? "border-t-green-500" :"border-t-purple-500" }`;
+        div.onclick = () => issueModal(data.data.id);
         div.innerHTML = `
         <div class="card-body space-y-3 ">
     <div class="flex flex-row justify-between">
@@ -161,7 +162,7 @@ async function BtnDisplay(btn){
     <h2 class="card-title text-xl">${data.data.title}</h2>
     <p class="line-clamp-2 text-[#64748B]">${data.data.description}</p>
     
-    <div class="flex flex-wrap flex-col lg:flex-row gap-4" id = "badge-container"> ${loadArray(data.data.labels)}</div>
+    <div class="flex flex-wrap lg:flex-row gap-4" id = "badge-container"> ${loadArray(data.data.labels)}</div>
     <hr>
     <p class="text-[#64748B]">#1 by ${data.data.author}</p>
     <p class="text-[#64748B]">${data.data.createdAt.split("T")[0]}</p>
