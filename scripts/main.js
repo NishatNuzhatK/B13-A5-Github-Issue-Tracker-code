@@ -178,6 +178,7 @@ async function BtnDisplay(btn){
  };
 
 
+//  7
   async function issueModal(id){
 
     const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`);
@@ -199,6 +200,48 @@ async function BtnDisplay(btn){
 
 
 
+//  8
+
+document.getElementById("search-btn").addEventListener('click', async function(){
+  const searchWord = document.getElementById('input-text');
+  const searchText = searchWord.value;
+  console.log(searchText);
+
+  const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchText}`);
+  const data = await res.json();
+  console.log(data);
+cardContainer.innerHTML = "";
+  
+  data.data.forEach((element) => {
+    
+    const div = document.createElement('div');
+        div.className = `card bg-base-100 shadow-sm rounded-xl border-t-4 cursor-pointer ${element.status == "open" ? "border-t-green-500" :"border-t-purple-500" }`;
+        div.onclick = () => issueModal(element.id);
+        div.innerHTML = `
+        <div class="card-body space-y-3 ">
+    <div class="flex flex-row justify-between">
+    ${element.status === "open"? '<img src="./assets/Open-Status.png" alt="">' : '<img src="./assets/Closed- Status .png" alt="">'}
+      
+      <p class="text-right text-xl">${element.priority}</p>
+    </div>
+    <h2 class="card-title text-xl wrap-break-words whitespace-normal w-full">${element.title}</h2>
+    <p class="line-clamp-2 text-[#64748B]">${element.description}</p>
+    
+    <div class="flex flex-wrap lg:flex-row gap-4" id = "badge-container"> ${loadArray(element.labels)}</div>
+    <hr>
+    <p class="text-[#64748B]">#1 by ${element.author}</p>
+    <p class="text-[#64748B]">${element.createdAt.split("T")[0]}</p>
+  </div>
+        
+        `;
+        
+        cardContainer.appendChild(div);
+
+    
+  });
+
+
+})
 
 
 
