@@ -18,8 +18,8 @@ const modalStatusAgain = document.getElementById("modal-status-again");
 const modalAssigneeAgain = document.getElementById("modal-assignee-again");
 
 // 3
- const loadArray = (arr,container) =>{
- const newArray = arr.map((el) => `<div class="inline-block border-amber-500 text-black bg-amber-300 rounded-xl p-2 max-w-full">${el}</div>`);
+ const loadArray = (arr) =>{
+ const newArray = arr.map((el) => `<div class="inline-block border-amber-500 text-black bg-amber-300 rounded-xl p-2 max-w-full">${el.toUpperCase()}</div>`);
  return (newArray.join(" "));
    
  };
@@ -64,7 +64,7 @@ function displayIssue(issues){
     <div class="flex flex-row justify-between">
     ${issue.status === "open"? '<img src="./assets/Open-Status.png" alt="">' : '<img src="./assets/Closed- Status .png" alt="">'}
       
-      <p class="text-right text-xl">${issue.priority}</p>
+      <p class="text-right text-xl">${issue.priority.toUpperCase()}</p>
     </div>
     <h2 class="card-title text-xl wrap-break-words whitespace-normal w-full">${issue.title}</h2>
     <p class="line-clamp-2 text-[#64748B]">${issue.description}</p>
@@ -157,7 +157,7 @@ async function BtnDisplay(btn){
     <div class="flex flex-row justify-between">
     ${data.data.status === "open"? '<img src="./assets/Open-Status.png" alt="">' : '<img src="./assets/Closed- Status .png" alt="">'}
       
-      <p class="text-right text-xl">${data.data.priority}</p>
+      <p class="text-right text-xl">${data.data.priority.toUpperCase()}</p>
     </div>
     <h2 class="card-title text-xl">${data.data.title}</h2>
     <p class="line-clamp-2 text-[#64748B]">${data.data.description}</p>
@@ -192,7 +192,7 @@ async function BtnDisplay(btn){
     modallabels.innerHTML = loadArray(data.data.labels);
     modalDate.textContent = data.data.updatedAt.split("T")[0];
     modalDes.textContent = data.data.description;
-    modalPriority.textContent = data.data.priority;
+    modalPriority.textContent = data.data.priority.toUpperCase();
     
     
   infoModal.showModal();
@@ -223,7 +223,7 @@ let count = 0;
     <div class="flex flex-row justify-between">
     ${element.status === "open"? '<img src="./assets/Open-Status.png" alt="">' : '<img src="./assets/Closed- Status .png" alt="">'}
       
-      <p class="text-right text-xl">${element.priority}</p>
+      <p class="text-right text-xl">${element.priority.toUpperCase()}</p>
     </div>
     <h2 class="card-title text-xl wrap-break-words whitespace-normal w-full">${element.title}</h2>
     <p class="line-clamp-2 text-[#64748B]">${element.description}</p>
