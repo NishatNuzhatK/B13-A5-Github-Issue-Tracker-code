@@ -212,6 +212,7 @@ document.getElementById("search-btn").addEventListener('click', async function()
   console.log(data);
 cardContainer.innerHTML = "";
   
+let count = 0;
   data.data.forEach((element) => {
     
     const div = document.createElement('div');
@@ -234,11 +235,14 @@ cardContainer.innerHTML = "";
   </div>
         
         `;
+
+        count++;
         
         cardContainer.appendChild(div);
 
     
   });
+  issueCount.innerText = count;
 
 
 })
